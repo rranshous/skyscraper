@@ -8,7 +8,7 @@ Thread.abort_on_exception=true
 SLEEP_TIME = 60
 
 puts "creating state"
-state = State.new('./data.lmc')
+state = State.new(ENV['data_dir'] || '/data/skyscraper.lmc')
 puts "has state"
 
 puts "callback: #{state['callback']}"
@@ -20,6 +20,7 @@ image_client = Tumblr::Image.new
 puts "starting thread"
 Thread.new do
   loop do
+    state['last_error'] = nil
     puts "thread started"
     puts "sleeping"
     sleep SLEEP_TIME
