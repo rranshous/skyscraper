@@ -5,7 +5,7 @@ require_relative 'tumblr'
 
 Thread.abort_on_exception=true
 
-SLEEP_TIME = 60
+SLEEP_TIME = (ENV['SLEEP_TIME'] || 60 * 5).to_i
 
 puts "creating state"
 state_path = File.join((ENV['DATA_DIR'] || './data'), 'skyscraper.lmc')
