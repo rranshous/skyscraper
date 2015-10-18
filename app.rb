@@ -23,8 +23,6 @@ Thread.new do
   loop do
     state['last_error'] = nil
     puts "thread started"
-    puts "sleeping"
-    sleep SLEEP_TIME
 
     domains = state['domains']
     callback = state['callback']
@@ -70,6 +68,8 @@ Thread.new do
       end
     end
     puts "done with scrape"
+    puts "sleeping"
+    sleep SLEEP_TIME
   end
 end
 
