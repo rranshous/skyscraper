@@ -5,3 +5,5 @@ very rough, feeling it out
 
 scrape (inefficiently right now) tumblr blog
 and post images to callback
+
+docker run --restart="always" -d -p 8080:80 --name="skyscraper" rranshous/skyscraper
