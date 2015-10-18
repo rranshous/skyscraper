@@ -1,0 +1,27 @@
+<form action='/set_callback' method='POST'>
+  <label> Callback Ex (http://blah.com:80)
+    <input type='text' name='callback' value='<%= state['callback'] %>'></input>
+  </label>
+  <input type='submit'>
+</form>
+
+<form action='/add_domain' method='POST'>
+  <label> add domain to scrape Ex (http://someblog.tumblr.com)
+    <input type='text' name='new_domain'></input>
+  </label>
+  <input type='submit'>
+</form>
+
+<hr>
+Callback: <%= state['callback'] %>
+
+<hr>
+Existing domains:
+<ul>
+<% (state['domains'] || []).each do |domain| %>
+  <li><%= domain %></li>
+<% end %>
+</ul>
+
+<hr>
+Last Error: <%= state['last_error'] %>

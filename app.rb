@@ -5,7 +5,7 @@ require_relative 'tumblr'
 
 Thread.abort_on_exception=true
 
-SLEEP_TIME = 5
+SLEEP_TIME = 60
 
 puts "creating state"
 state = State.new('./data.lmc')
@@ -28,10 +28,12 @@ Thread.new do
     callback = state['callback']
     if domains.nil? || domains.empty?
       puts "no domains, halting"
+      state['last_error'] = "no domains set"
       next
     end
     if callback.nil?
       puts "no callback, halting"
+      state['last_error'] = "no callback set"
       next
     end
 
@@ -54,10 +56,12 @@ Thread.new do
             state[key] = state[key].merge({ processed: true })
           else
             puts "bad response: #{rsp.code}, halting"
+            state['last_error'] = "Bad HTTP Response: #{rsp.code}"
             false
           end
         rescue StandardError => ex
           puts "error posting: #{ex}, halting"
+          state['last_error'] = "Runtime Error: #{ex}"
           false
         end
         true
@@ -74,7 +78,7 @@ post '/set_callback' do
   puts "setting callback: #{callback}"
   state['callback'] = callback
   content_type :text
-  "new callback: #{callback}"
+  redirect '/'
 end
 
 post '/add_domain' do
@@ -84,5 +88,9 @@ post '/add_domain' do
   halt 409 if existing_domains.include? new_domain
   state["domains"] = existing_domains + [new_domain]
   content_type :text
-  "success: added #{new_domain}\n\n#{state['domains'].join("\n")}"
+  redirect '/'
+end
+
+get '/' do
+  erb :index, locals: { state: state }
 end

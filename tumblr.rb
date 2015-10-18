@@ -40,7 +40,7 @@ module Tumblr
     def page_urls blog_href
       Enumerator.new do |yielder|
         puts "page_urls: #{blog_href}"
-        700.downto(2).each do |page_number|
+        10.downto(2).each do |page_number|
           yielder << [page_number,
                       url_join(blog_href,'/page/',"/#{page_number}/",'rss').to_s]
         end
