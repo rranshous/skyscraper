@@ -1,0 +1,6 @@
+source 'https://rubygems.org'
+gem 'sinatra'
+gem 'localmemcache'
+gem 'feedjira'
+gem 'httparty'
+gem 'pry'

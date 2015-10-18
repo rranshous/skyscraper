@@ -1,0 +1,4 @@
+*.lmc
+/data
+/out
+Gemfile.lock
