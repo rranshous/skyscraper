@@ -8,7 +8,7 @@ Thread.abort_on_exception=true
 SLEEP_TIME = 60
 
 puts "creating state"
-state = State.new(ENV['data_dir'] || '/data/skyscraper.lmc')
+state = State.new(File.join((ENV['data_dir'] || './data'), 'skyscraper.lmc'))
 puts "has state"
 
 puts "callback: #{state['callback']}"
