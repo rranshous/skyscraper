@@ -6,4 +6,6 @@ very rough, feeling it out
 scrape (inefficiently right now) tumblr blog
 and post images to callback
 
-docker run --restart="always" -d -p 8080:80 --name="skyscraper" rranshous/skyscraper
+docker run --restart="always" -d -p 8080:80 -v /persistant/place/:/data --name="skyscraper" rranshous/skyscraper
+
+using a docker container as data storage is recommended so that you can update hte skyscraper image and restart the app but not lose the data
