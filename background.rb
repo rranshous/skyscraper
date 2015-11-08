@@ -2,6 +2,7 @@ require_relative 'scraper'
 require_relative 'tumblr'
 
 SLEEP_TIME = (ENV['SLEEP_TIME'] || 60 * 5).to_i
+SLEEP_TIME = 5
 
 def background_loop state
 
