@@ -3,7 +3,9 @@ require 'json'
 
 class State
   def initialize path='./data.lmc'
+    puts "loading state"
     @store = LocalMemCache.new(:filename => path)
+    puts "state loaded"
   end
 
   def [] key

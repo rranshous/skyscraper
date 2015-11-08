@@ -5,13 +5,10 @@ require 'thread'
 Thread.abort_on_exception = true
 
 # create persistant state
-puts "creating state"
 state_path = File.join((ENV['DATA_DIR'] || './data'), 'skyscraper.lmc')
 state = State.new(state_path)
-puts "has state"
 
 background_thread = nil
-
 begin
 
   # startup the background work
