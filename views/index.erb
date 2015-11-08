@@ -12,6 +12,13 @@
   <input type='submit'>
 </form>
 
+<form action='/remove_domain' method='POST'>
+  <label> remove domain from scrape Ex (http://someblog.tumblr.com)
+    <input type='text' name='domain'></input>
+  </label>
+  <input type='submit'>
+</form>
+
 <hr>
 Callback: <%= state['callback'] %>
 
