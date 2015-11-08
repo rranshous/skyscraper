@@ -42,7 +42,6 @@ def background_loop state
       sm = ScrapeMaster.new state['domains']
       puts "starting image details scraper"
       sm.start do |key, image_details|
-        key = image_details[:key]
         if state[key] && state[key]["processed"]
           puts "has already been processed"
           true
@@ -52,7 +51,8 @@ def background_loop state
           data = image_client.download(state[key]["href"])
           begin
             puts "posting"
-            rsp = HTTParty.post("#{callback}/#{key}.#{ext}", body: data)
+            post_domain = URI(image_details[:post_href]).host
+            rsp = HTTParty.post("#{callback}/#{post_domain}-#{key}.#{ext}", body: data)
             if rsp.code == 200
               puts "setting processed #{key}"
               state[key] = state[key].merge({ processed: true })

@@ -92,6 +92,7 @@ module Tumblr
       ]
       width, url = image_versions.first
       return {
+        post_href: post_href,
         href: url,
         width: width,
         post: { href: post_href }
